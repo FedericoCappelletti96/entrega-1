@@ -58,7 +58,74 @@ if(tieneDescuento === "SI") {
 
  }
  alert(`${nombre} la peliculas que elgiste fue la opcion ${peliculaElegida} , el numero de reservas fueron de ${cuantasReservas}` )
+// arrays
+ class Usuario{
+    constructor(mail, saldo){ 
+    this.mail = mail;
+    this.saldo = saldo;
+    }
+    compra(monto){
+        this.saldo = this.saldo - monto;
+        
+    }
+ }
+ function obtenerIndiceDeUsuarioPorMail () {
+    let indiceUsuario = -1;
+        for(let i = 0; i < usuarios.length; i++) {
+            if(usuarios[i].mail === mail) {
+                indiceUsuario = i;
+                 break;
+            }
+    }
+    return indiceUsuario;
+ }
 
+function mailExiste (mail) {
+    let encontrado = false;
+   
+       for(const usuario of usuarios) {
+    
+            if(usuario.mail === mail) {
+                 encontrado = true;
+           break;
+            }
+    
+         }
+         return encontrado;
+
+ } 
+ function compra(){
+    let mail = prompt("Introduce el usuario que quiere comprar la entrada a la funcion? ");
+    while(!mailExiste(mail)) {
+        mail = prompt("Usuario incorrecto. Introduce el usuario que quiere comprar la entrada a la funcion? ");
+    }
+
+    const indiceUsuario = obtenerIndiceDeUsuarioPorMail(mail);
+
+    let monto = 1500;
+    usuarios[indiceUsuario].retirar(monto);
+    console.log("Se gastaron $" + monto + " en la compra de " + mail);
+
+
+
+ }
+ //Lista de usuarios 
+ const usuarios = [
+    new Usuario("Juan_SiempreVivo@gmail.com", 3000),
+    new Usuario("Marge-gameplays@gmail.com", 1000),
+    new Usuario("Homero_SiempreVivo@gmail.com", 150),
+];  
+
+let op = prompt("Ingrese si usted quiere comprar la funcion,si no quiere escriba Salir ");
+
+while(op!== "Salir") {
+    switch(op) {
+    case "1":
+        compra();
+        break;
+    
+    }
+}
 
 
 
